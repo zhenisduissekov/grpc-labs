@@ -36,15 +36,23 @@ make generate
 ```
 This will generate Go code from the protobuf definition in `proto/greeter.proto`.
 
+If you encounter an error like "program not found or is not executable", try adding the Go bin directory to your PATH:
+```bash
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+
 3. Run everything with a single command:
 ```bash
 make run
 ```
 This will:
 - Start the gRPC server
-- Wait a moment for it to initialize
-- Run the client
-- Clean up the server process
+- The client will send a request with the name "World" and you should see the greeting message "Hello world" printed in the client's terminal.
+
+If you encounter an error like "program not found or is not executable", try adding the Go bin directory to your PATH:
+```bash
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
 
 4. Verify the service with curl (optional):
 ```bash
@@ -75,45 +83,6 @@ Note: The curl command requires the gRPC HTTP/2 proxy to be running. This is an 
 ## Project Status
 
 This is the first step in a gRPC tutorial series, demonstrating basic unary RPC communication. Future steps will build upon this foundation.
-
-## Setup and Usage
-
-1. Initialize the project:
-```bash
-make init
-```
-This command will:
-- Clean up existing Go module files and generated code
-- Initialize a new Go module
-- Install required protobuf and gRPC plugins
-- Display the paths of installed protobuf tools
-
-2. Generate protobuf code:
-```bash
-make generate
-```
-This will generate Go code from the protobuf definition in `proto/greeter.proto`.
-
-3. Run the server and client separately:
-```bash
-# First, start the server in one terminal:
-make run-server
-
-# Then, in another terminal, run the client:
-make run-client
-```
-
-The client will send a request with the name "world" and you should see the greeting message "Hello world" printed in the client's terminal.
-
-4. Verify the service with grpcurl:
-```bash
-# Install grpcurl if you haven't already:
-go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
-
-# Test the service:
-grpcurl -plaintext localhost:50051 greeter.Greeter/SayHello
-```
-Note: The curl command requires the gRPC HTTP/2 proxy to be running. This is an alternative way to test the service but not recommended for production use.
 
 ## Important Notes
 

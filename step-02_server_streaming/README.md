@@ -71,6 +71,11 @@ Running gRPC client...
 2025/05/21 14:59:16 Stream response: Hello World (5/5)
 ```
 
+If you encounter an error like "program not found or is not executable", try adding the Go bin directory to your PATH:
+```bash
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+
 ## Important Notes
 
 1. **Streaming Behavior**:
