@@ -9,7 +9,7 @@ all: generate run
 init:
 	rm -f go.mod go.sum
 	rm -f *.pb.go
-	go mod init step-01_basic_unary
+	go mod init step-02_server_streaming
 	go mod tidy
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
@@ -32,5 +32,3 @@ run-server:
 run-client:
 	@echo "Running gRPC client..."
 	@go run cmd/client/main.go
-
-
