@@ -107,3 +107,8 @@ lsof -ti:50051,50052 | xargs kill -15
 ```
 
 This will terminate both the main server (port 50051) and logger service (port 50052).
+
+---
+### 🛠️ Built with Help from AI
+
+This project was developed primarily by me while learning and exploring gRPC and Go — with the assistance of OpenAI's ChatGPT and [Windsurf](https://windsurf.ai), a powerful AI coding agent platform. All code has been reviewed and customized for clarity and educational value.
