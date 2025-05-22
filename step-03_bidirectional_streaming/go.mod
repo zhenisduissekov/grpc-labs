@@ -1,8 +1,6 @@
 module step-03_bidirectional_streaming
 
-go 1.23
-
-toolchain go1.23.9
+go 1.24.0
 
 require (
 	google.golang.org/grpc v1.72.1

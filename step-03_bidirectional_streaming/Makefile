@@ -32,3 +32,7 @@ run-server:
 run-client:
 	@echo "Running gRPC client..."
 	@go run cmd/client/main.go
+
+
+fix-path:
+	@echo "export PATH=\"$${PATH}:$$(go env GOPATH)/bin\""
