@@ -237,3 +237,8 @@ see local Readme.md for further steps
 cd step-02_stream
 see local Readme.md for further steps
 ...
+
+---
+### 🛠️ Built with Help from AI
+
+This project was developed primarily by me while learning and exploring gRPC and Go — with the assistance of OpenAI's ChatGPT and [Windsurf](https://windsurf.ai), a powerful AI coding agent platform. All code has been reviewed and customized for clarity and educational value.
