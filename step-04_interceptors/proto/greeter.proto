@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package greeter;
+
+option go_package = "internal/greeter;greeterpb";
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+service Greeter {
+  rpc SayHello(HelloRequest) returns (HelloReply);
+  rpc StreamGreetings(HelloRequest) returns (stream HelloReply); // 🆕 Server streaming
+  rpc Chat(stream HelloRequest) returns (stream HelloReply);
+  rpc UploadNames(stream HelloRequest) returns (HelloReply); // ✅ Client streaming
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package logger;
+
+option go_package = "internal/logger;loggerpb";
+
+message LogRequest {
+  string message = 1;
+}
+
+message LogReply {
+  bool ok = 1;
+}
+
+service Logger {
+  rpc Log(LogRequest) returns (LogReply);
+}
