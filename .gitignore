@@ -27,4 +27,3 @@ out/
 vendor/
 
 # Go module cache
-go.sum
