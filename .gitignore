@@ -1,0 +1,30 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+
+# Go
+*.pb.go
+*.pb.gw.go
+*.pb.validate.go
+*.pb.test.go
+*.pb.mock.go
+*.pb.validate.mock.go
+*.pb.validate.test.go
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build
+bin/
+obj/
+out/
+
+# Dependencies
+vendor/
+
+# Go module cache
+go.sum
