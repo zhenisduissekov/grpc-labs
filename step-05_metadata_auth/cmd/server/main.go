@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	port = ":50051"
+	port  = ":50051"
 	token = "my-secret-token"
 )
 
@@ -45,8 +45,8 @@ func (s *server) SecureGreeting(ctx context.Context, in *pb.HelloRequest) (*pb.H
 	}
 
 	// Validate token
-	if !strings.HasPrefix(authHeader[0], "bearer ") || 
-	   !isValidToken(strings.TrimPrefix(authHeader[0], "bearer ")) {
+	if !strings.HasPrefix(authHeader[0], "bearer ") ||
+		!isValidToken(strings.TrimPrefix(authHeader[0], "bearer ")) {
 		return nil, status.Error(codes.Unauthenticated, "invalid token")
 	}
 
@@ -79,8 +79,8 @@ func unaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServ
 		return nil, status.Error(codes.Unauthenticated, "authorization token is not provided")
 	}
 
-	if !strings.HasPrefix(authHeader[0], "bearer ") || 
-	   !isValidToken(strings.TrimPrefix(authHeader[0], "bearer ")) {
+	if !strings.HasPrefix(authHeader[0], "bearer ") ||
+		!isValidToken(strings.TrimPrefix(authHeader[0], "bearer ")) {
 		return nil, status.Error(codes.Unauthenticated, "invalid token")
 	}
 
@@ -89,22 +89,16 @@ func unaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServ
 }
 
 func main() {
-	// Create a TCP listener
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	// Create a gRPC server with the interceptor
 	s := grpc.NewServer(
 		grpc.UnaryInterceptor(unaryInterceptor),
 	)
-
-	// Register the Greeter service
 	pb.RegisterGreeterServer(s, &server{})
 	log.Printf("Server listening at %v", lis.Addr())
-
-	// Start serving
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

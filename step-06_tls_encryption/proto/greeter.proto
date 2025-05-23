@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package greeter;
+
+option go_package = "internal/greeter;greeterpb";
+
+// Greeter service demonstrates secure gRPC communication with TLS
+service Greeter {
+    // Unary RPC that will be secured with TLS
+    rpc SayHello(HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+    string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+    string message = 1;
+}
