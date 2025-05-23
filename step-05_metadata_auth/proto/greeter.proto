@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package greeter;
+
+option go_package = "internal/greeter;greeterpb";
+
+service Greeter {
+    // Unary RPC that requires authentication via metadata
+    rpc SayHello(HelloRequest) returns (HelloReply);
+    
+    // A secure method that requires a valid token in metadata
+    rpc SecureGreeting(HelloRequest) returns (HelloReply);
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+    string message = 1;
+}
