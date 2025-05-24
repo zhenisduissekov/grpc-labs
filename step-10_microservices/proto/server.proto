@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package server;
+
+option go_package = "internal/server;serverpb";
+
+// Server service provides server functionality
+service Server {
+    // SayHello returns a greeting to the user
+    rpc SayHello(HelloRequest) returns (HelloReply);
+}
+
+// HelloRequest contains the name of the person to greet
+message HelloRequest {
+    string name = 1;  // The name to greet
+}
+
+// HelloReply contains the greeting message
+message HelloReply {
+    string message = 1;  // The greeting message
+}

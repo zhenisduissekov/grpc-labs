@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package logger;
+
+option go_package = "internal/logger;loggerpb";
+
+// Logger service handles logging requests from other services
+service Logger {
+    // Log handles a single log entry
+    rpc Log(LogRequest) returns (LogResponse);
+}
+
+// LogRequest contains the details of a log entry
+message LogRequest {
+    string message = 1;  // The log message
+    string service = 2;  // The name of the service sending the log
+    string level = 3;    // Log level (e.g., INFO, ERROR, DEBUG)
+}
+
+// LogResponse confirms that a log entry was received
+message LogResponse {
+    bool success = 1;     // Whether the log was successfully processed
+    string message_id = 2; // A unique identifier for the log entry
+}
