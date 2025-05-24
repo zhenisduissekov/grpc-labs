@@ -1,0 +1,44 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:14317
+      http:
+        endpoint: 0.0.0.0:14318
+
+processors:
+  batch:
+
+# Exporters for different backends
+exporters:
+  # Jaeger exporter
+  jaeger:
+    endpoint: "jaeger:14250"
+    tls:
+      insecure: true
+  
+  # Logging exporter (for debugging)
+  logging:
+    loglevel: debug
+
+  # OTLP exporter (for other backends)
+  otlp:
+    endpoint: "jaeger:4317"
+    tls:
+      insecure: true
+
+# Service section ties everything together
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [jaeger, logging]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging]
