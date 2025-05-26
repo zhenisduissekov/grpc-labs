@@ -18,35 +18,41 @@ rpc SayHello(HelloRequest) returns (HelloReply);
 ⸻
 
 ## ✅ Step 2: Server Streaming – StreamGreetings
-	•	Client sends 1 request.
-	•	Server responds with a stream of HelloReply.
+- The client sends one request.
+- The server responds with a stream of `HelloReply`.
 
+```proto
 rpc StreamGreetings(HelloRequest) returns (stream HelloReply);
+```
 
 Use case: live updates, chat history, or data feeds.
 
 ⸻
 
 ✅ Step 3: Bidirectional Streaming – Chat
-	•	Client and server both stream messages.
-	•	Enables real-time chat or event-driven apps.
+- Both the client and server stream messages.
+- Enables real-time chat or event-driven applications.
 
+```proto
 rpc Chat(stream HelloRequest) returns (stream HelloReply);
+```
 
 ⸻
 
 ✅ Step 4: Interceptors (Middleware)
-	•	Add logic around RPCs: logging, auth, tracing, etc.
+- Add logic around RPCs: logging, auth, tracing, etc.
 
+```go
 grpc.NewServer(
   grpc.UnaryInterceptor(loggingUnaryInterceptor),
 )
+```
 
 Use cases:
-	•	🔐 Auth
-	•	📝 Logging
-	•	📊 Metrics
-	•	🔁 Retry
+- 🔐 Auth
+- 📝 Logging
+- 📊 Metrics
+- 🔁 Retry
 
 ⸻
 
@@ -84,7 +90,7 @@ reflection.Register(grpcServer)
 
 healthpb.RegisterHealthServer(grpcServer, health.NewServer())
 
-Lets tools like grpcurl, Kubernetes, and Envoy monitor service state.
+This enables tools like [`grpcurl`](https://github.com/fullstorydev/grpcurl), Kubernetes, and Envoy to monitor the service state.
 
 ⸻
 
@@ -180,11 +186,7 @@ Avoids cascading failures by stopping bad calls.
 	•	Sends Kafka message to events.greeted
 	•	LoggerService or analytics consume async
 
-Use:
-
-segmentio/kafka-go
-
-Decouples and scales your system.
+Use the [`segmentio/kafka-go`](https://github.com/segmentio/kafka-go) library to decouple services and improve scalability.
 
 ⸻
 
@@ -206,18 +208,12 @@ Safe rollout of breaking changes.
 ⸻
 
 👋 Next Steps?
-	•	✅ Step 18: Rate Limiting per user/service
-	•	✅ Step 19: gRPC-Gateway (REST ↔ gRPC)
-	•	✅ Step 20: CI/CD for gRPC with Docker + K8s
-	•	✅ Step 21: Request validation (with proto annotations)
+- ✅ Step 18: Rate Limiting per user/service
+- ✅ Step 19: gRPC-Gateway (REST ↔ gRPC)
+- ✅ Step 20: CI/CD for gRPC with Docker + K8s
+- ✅ Step 21: Request validation (with proto annotations)
 
-Let me know if you’d like these too.
-
----
-
-✅ You can now paste this directly into `README.md` and evolve it as a full tutorial or GitHub documentation.  
-Let me know if you want the steps as collapsible sections or linked to files in your repo.
-
+Feel free to explore these additional steps to enhance your gRPC services.
 
 ⸻
 
@@ -231,14 +227,17 @@ Let me know if you want the steps as collapsible sections or linked to files in 
 
 🚀 Getting Started
 
-git clone
-cd step-01_basic_unary
-see local Readme.md for further steps
-cd step-02_stream
-see local Readme.md for further steps
+git clone https://github.com/zhenisduissekov/grpc-labs.git
+cd grpc-labs/step-01_basic_unary
+# Run the following commands as described in the local README.md:
+# make init
+# make generate
+# make run-server
+cd ../step-02_server_streaming
+# Refer to the local README.md for detailed instructions, including `make init`, `make generate`, and running the service.
 ...
 
 ---
 ### 🛠️ Built with Help from AI
 
-This project was developed primarily by me while learning and exploring gRPC and Go — with the assistance of OpenAI's ChatGPT and [Windsurf](https://windsurf.ai), a powerful AI coding agent platform. All code has been reviewed and customized for clarity and educational value.
+This project was developed while learning and exploring gRPC and Go, with the assistance of AI tools like [OpenAI's ChatGPT](https://openai.com/chatgpt) and [Windsurf](https://windsurf.ai). All code has been reviewed and customized to ensure clarity and educational value.
