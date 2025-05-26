@@ -263,12 +263,13 @@ Feel free to explore these additional steps to enhance your gRPC services.
 
 git clone https://github.com/zhenisduissekov/grpc-labs.git
 cd grpc-labs/step-01_basic_unary
-# Run the following commands as described in the local README.md:
-# make init
-# make generate
-# make run-server
+
+Run the following commands as described in the local README.md:
+make init
+make generate
+make run-server
 cd ../step-02_server_streaming
-# Refer to the local README.md for detailed instructions, including `make init`, `make generate`, and running the service.
+Refer to the local README.md for detailed instructions, including `make init`, `make generate`, and running the service.
 ...
 
 ---
