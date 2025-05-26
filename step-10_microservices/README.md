@@ -7,7 +7,7 @@ This project demonstrates gRPC service-to-service communication between two micr
 ```
 .
 ├── cmd/                  # Command-line applications
-│   ├── greeter/         # Greeter service (calls LoggerService)
+│   ├── server/         # Server service (calls LoggerService)
 │   └── logger/          # Logger service (handles logging requests)
 ├── internal/             # Internal packages
 │   ├── server/          # Server service protobuf definitions
@@ -22,10 +22,10 @@ This project demonstrates gRPC service-to-service communication between two micr
 
 ## Services
 
-### 1. Server Service (port 50051)
+### 1. Server (port 50051)
 - Provides a simple greeting functionality
 - Calls the Logger service for each request
-- Implements the `Server` service defined in `proto/server.proto`
+- Implements the `Server` defined in `proto/server.proto`
 
 ### 2. Logger Service (port 50052)
 - Handles logging requests from other services
@@ -53,8 +53,8 @@ This will generate Go code from the protobuf definitions.
 # Terminal 1 - Start Logger Service
 make run-logger
 
-# Terminal 2 - Start Greeter Service
-make run-greeter
+# Terminal 2 - Start Server Service
+make run-server
 
 # Terminal 3 - Run the client
 make run-client
@@ -65,26 +65,27 @@ make run-client
 ### `proto/logger.proto`
 Defines the Logger service with a simple Log RPC method.
 
-### `proto/greeter.proto`
-Defines the Greeter service that depends on the Logger service.
+### `proto/server.proto`
+Defines the Server that depends on the Logger service.
 
 ## Important Notes
 
 1. **Service Dependencies**:
-   - The Greeter service depends on the Logger service
-   - Logger service must be running before starting the Greeter service
+   - The Server depends on the Logger service.
+   - Ensure the Logger service is running before starting the Server service.
 
 2. **Port Configuration**:
-   - Greeter Service: 50051
+   - Server Service: 50051
    - Logger Service: 50052
 
 3. **Error Handling**:
-   - The Greeter service includes basic error handling for Logger service unavailability
+   - The Server includes basic error handling for Logger service unavailability, such as retries and fallback mechanisms.
+   - The Logger service includes basic error handling for log request failures, ensuring stability.
 
 ## Next Steps
 
-1. Add service discovery
-2. Implement retries and circuit breaking
-3. Add tracing between services
-4. Add metrics and monitoring
-5. Containerize the services
+1. Add service discovery using tools like Consul or Kubernetes.
+2. Implement retries and circuit breaking with libraries like `github.com/sony/gobreaker`.
+3. Add distributed tracing between services using OpenTelemetry.
+4. Integrate metrics and monitoring with Prometheus and Grafana.
+5. Containerize the services using Docker and orchestrate them with Kubernetes.
