@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package greeter;
+
+option go_package = "internal/greeter;greeterpb";
+
+import "google/protobuf/empty.proto";
+
+// Greeter service demonstrates metadata propagation
+service Greeter {
+    // SayHello takes a name and returns a greeting
+    rpc SayHello(HelloRequest) returns (HelloReply);
+}
+
+// Logger service demonstrates receiving and logging metadata
+service Logger {
+    // LogRequest logs the incoming request details including metadata
+    rpc LogRequest(LogRequestMsg) returns (google.protobuf.Empty);
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+    string message = 1;
+}
+
+message LogRequestMsg {
+    string request_data = 1;
+    // Metadata will be passed through context
+}
