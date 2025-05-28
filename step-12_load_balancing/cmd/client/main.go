@@ -43,7 +43,7 @@ type dnsResolver struct {
 }
 
 func (r *dnsResolver) ResolveNow(resolver.ResolveNowOptions) {}
-func (r *dnsResolver) Close() {}
+func (r *dnsResolver) Close()                                {}
 
 func main() {
 	// Register a custom resolver that knows about our servers
@@ -70,26 +70,26 @@ func main() {
 	// Send multiple requests to see load balancing in action
 	for i := 0; i < 5; i++ {
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-		
+
 		// Add a small delay between requests
 		time.Sleep(500 * time.Millisecond)
-		
+
 		// Create a unique name for each request
 		name := fmt.Sprintf("World-%d", i+1)
 		log.Printf("Sending request %d for name: %s", i+1, name)
-		
+
 		// Make the RPC call
 		start := time.Now()
 		response, err := client.SayHello(ctx, &greeterpb.HelloRequest{Name: name})
 		elapsed := time.Since(start)
-		
+
 		// Handle the response
 		if err != nil {
 			log.Printf("Error calling SayHello for %s: %v", name, err)
 		} else {
 			log.Printf("Response %d: %s (took %v)", i+1, response.Message, elapsed)
 		}
-		
+
 		cancel()
 	}
 }
