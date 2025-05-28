@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package greeter;
+
+option go_package = "internal/greeter;greeterpb";
+
+// Greeter service demonstrates retry and timeout functionality
+service Greeter {
+    // SayHello is a simple unary RPC with retry and timeout support
+    rpc SayHello(HelloRequest) returns (HelloReply);
+    
+    // UnaryHello is a more configurable unary RPC
+    rpc UnaryHello(HelloRequest) returns (HelloReply);
+}
+
+// HelloRequest contains the user's name and optional retry configuration
+message HelloRequest {
+    string name = 1;  // The name to greet
+    
+    // Optional configuration for server-side behavior
+    bool simulate_error = 2;  // If true, server will return an error
+    int32 delay_ms = 3;      // Server will delay response by this many milliseconds
+}
+
+// HelloReply contains the greeting message
+message HelloReply {
+    string message = 1;  // The greeting message
+    string server_id = 2; // Server identifier (useful for debugging load balancing)
+    int32 attempt = 3;   // The attempt number (for client-side retry testing)
+}
+
