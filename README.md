@@ -6,7 +6,7 @@ This README documents each advanced gRPC feature implemented step-by-step, ideal
 
 ---
 
-## ✅ Step 1: Basic Unary RPC – `SayHello`
+✅ Step 1: Basic Unary RPC – `SayHello`
 
 - A simple request/response method.
 - Sends `HelloRequest`, receives `HelloReply`.
@@ -17,7 +17,7 @@ rpc SayHello(HelloRequest) returns (HelloReply);
 
 ---
 
-## ✅ Step 2: Server Streaming – StreamGreetings
+✅ Step 2: Server Streaming – StreamGreetings
 - The client sends one request.
 - The server responds with a stream of `HelloReply`.
 
