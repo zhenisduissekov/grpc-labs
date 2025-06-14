@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: 'gRPC'
+    orgId: 1
+    folder: 'gRPC'
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /etc/grafana/provisioning/dashboards
